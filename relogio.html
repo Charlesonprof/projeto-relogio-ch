@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Relógio Digital</title>
+  <style>
+    /* Centraliza o relógio na tela */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      /*background-color: #121212;*/
+      color: #00ff88;
+      font-family: 'Courier New', monospace;
+      font-size: 3em;
+
+      background-image: url(https://www.ap.senai.br/images/fachadansenaimcp0825.png);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      background-blend-mode: darken;  
+     background-color: rgba(0, 0, 0, 0.657) ;
+
+    backdrop-filter: blur(5px);
+    }
+  </style>
+</head>
+<body>
+  <div id="relogio"></div>
+    <script src="script.js"></script>
+  <script>
+    // Função para atualizar o relógio
+    function atualizarRelogio() {
+      const agora = new Date(); // Cria um novo objeto Date com a hora atual
+      let horas = agora.getHours();
+      let minutos = agora.getMinutes();
+      let segundos = agora.getSeconds();
+
+      // Adiciona um zero à esquerda se o número for menor que 10
+      if (horas < 10) horas = '0' + horas;
+      if (minutos < 10) minutos = '0' + minutos;
+      if (segundos < 10) segundos = '0' + segundos;
+
+      // Monta a string do relógio
+      const horario = `${horas}:${minutos}:${segundos}`; /* template string - insere o valor da variavel diretamento no texto, sem precisar concatenar com o operador */
+
+      // Atualiza o conteúdo do elemento HTML
+      document.getElementById('relogio').textContent = horario;
+    }
+
+    // Atualiza o relógio a cada 1 segundo (1000 milissegundos)
+    setInterval(atualizarRelogio, 1000);
+
+    // Chama a função uma vez para exibir o horário imediatamente
+    atualizarRelogio();
+  </script>
+</body>
+</html>
